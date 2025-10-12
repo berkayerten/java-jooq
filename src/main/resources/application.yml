@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: java-jooq
+
+  datasource:
+    url: jdbc:postgresql://localhost:5423/mydb
+    username: myuser
+    password: mypass
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: java_jooq
+
+  jooq:
+    sql-dialect: POSTGRES
+
+  flyway:
+    enabled: true
+    default-schema: java_jooq
+    schemas: java_jooq
+server:
+  port: 8465
