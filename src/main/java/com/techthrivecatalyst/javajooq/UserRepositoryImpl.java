@@ -1,6 +1,6 @@
 package com.techthrivecatalyst.javajooq;
 
-import com.techthrivecatalyst.javajooq.generated.tables.AppUser;
+import com.techthrivecatalyst.javajooq.generated.tables.Employee;
 import java.util.List;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepositoryImpl implements UserRepository{
 
-    private static final AppUser AU = AppUser.APP_USER;
+    private static final Employee E = Employee.EMPLOYEE;
 
     private final DSLContext dsl;
 
@@ -17,17 +17,18 @@ public class UserRepositoryImpl implements UserRepository{
         this.dsl = dsl;
     }
 
+    @Override
     public void insert(String name, String email) {
-        dsl.insertInto(AU)
-                .set(AU.NAME, name)
-                .set(AU.EMAIL, email)
+        dsl.insertInto(E)
+                .set(E.NAME, name)
+                .set(E.EMAIL, email)
                 .execute();
     }
 
-    public List<com.techthrivecatalyst.javajooq.generated.tables.pojos.AppUser> findAll() {
+    public List<com.techthrivecatalyst.javajooq.generated.tables.pojos.Employee> findAll() {
         return dsl.select()
-                .from(AU)
-                .fetchInto(com.techthrivecatalyst.javajooq.generated.tables.pojos.AppUser.class);
+                .from(E)
+                .fetchInto(com.techthrivecatalyst.javajooq.generated.tables.pojos.Employee.class);
     }
 
 }
